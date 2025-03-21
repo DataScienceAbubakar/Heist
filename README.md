@@ -43,7 +43,7 @@ flowchart TD
     T --> U[Search other USA marketing sites]
     
     %% Check if property is "off market"
-    U --> V{Property listed as "off market"?}
+    U --> V{Property listed as OFF MARKET?}
     V -->|No| W[Mark as potentially active listing]
     W --> K
     

@@ -7,11 +7,25 @@ from tensorflow.keras.layers import Dense, LSTM, Dropout
 def load_audio(file_path, sr=22050):
     audio, _ = librosa.load(file_path, sr=sr)
     return audio
-
+ model = Sequential([
+        LSTM(128, input_shape=input_shape, return_sequences=True),
+        Dropout(0.2),
+        LSTM(64, return_sequences=False),
+        Dropout(0.2),
+        Dense(64, activation='relu'),
+        Dense(input_shape[0], activation='tanh')
+    ])
 def extract_features(audio, sr=22050, n_mfcc=40):
     mfccs = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=n_mfcc)
     return np.mean(mfccs.T, axis=0)
-
+ model = Sequential([
+        LSTM(128, input_shape=input_shape, return_sequences=True),
+        Dropout(0.2),
+        LSTM(64, return_sequences=False),
+        Dropout(0.2),
+        Dense(64, activation='relu'),
+        Dense(input_shape[0], activation='tanh')
+    ])
 def build_model(input_shape):
     model = Sequential([
         LSTM(128, input_shape=input_shape, return_sequences=True),
